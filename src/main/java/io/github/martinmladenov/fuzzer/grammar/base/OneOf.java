@@ -3,7 +3,7 @@ package io.github.martinmladenov.fuzzer.grammar.base;
 import java.util.Random;
 
 /**
- * Randomly picks one of the symbols from the list.
+ * Randomly picks one of the symbols from the list with equal probability.
  */
 public class OneOf extends Symbol {
 
