@@ -11,7 +11,7 @@ public class CharBetween extends BaseSymbol{
     char max;
 
     public CharBetween(char min, char max){
-        if(min <= max){
+        if(min >= max){
             throw new IllegalArgumentException("min must be < max");
         }
 
