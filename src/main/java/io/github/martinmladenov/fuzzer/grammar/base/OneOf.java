@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class OneOf extends Symbol {
 
-    private Symbol[] symbols;
+    private final Symbol[] symbols;
 
     public OneOf(Symbol... symbols) {
         this.symbols = symbols;

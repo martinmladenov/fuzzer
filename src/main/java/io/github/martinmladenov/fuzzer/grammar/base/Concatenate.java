@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class Concatenate extends Symbol {
 
-    private Symbol[] symbols;
+    private final Symbol[] symbols;
 
     public Concatenate(Symbol... symbols) {
         this.symbols = symbols;
