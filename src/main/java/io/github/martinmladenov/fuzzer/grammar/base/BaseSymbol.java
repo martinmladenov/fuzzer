@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * A base class defining a symbol.
  */
-public abstract class Symbol {
+public abstract class BaseSymbol {
 
     public abstract void generate(StringBuilder sb, Random rnd);
 

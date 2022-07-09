@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Appends a predefined string.
  */
-public class Terminal extends Symbol {
+public class Terminal extends BaseSymbol {
 
     private String value;
 

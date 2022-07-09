@@ -5,21 +5,21 @@ import java.util.Random;
 /**
  * Generate a certain symbol a random number of times.
  */
-public class RepeatRandom extends Symbol {
+public class RepeatRandom extends BaseSymbol {
 
     // TODO: This is an arbitrary value, perhaps it should be changed in the future
     protected static final int DEFAULT_MAX = 50;
 
     private final int min;
     private final int max;
-    private final Symbol symbol;
+    private final BaseSymbol symbol;
 
     /**
      * @param symbol the symbol to generate
      * @param min    the minimum number of times to generate the symbol (incl.)
      * @param max    the maximum number of times to generate the symbol (incl.)
      */
-    public RepeatRandom(Symbol symbol, int min, int max) {
+    public RepeatRandom(BaseSymbol symbol, int min, int max) {
         if (min < 0) {
             throw new IllegalArgumentException("min must be >= 0");
         }

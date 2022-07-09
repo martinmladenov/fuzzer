@@ -5,17 +5,17 @@ import java.util.Random;
 /**
  * Generates all symbols from left to right and concatenates their results.
  */
-public class Concatenate extends Symbol {
+public class Concatenate extends BaseSymbol {
 
-    private final Symbol[] symbols;
+    private final BaseSymbol[] symbols;
 
-    public Concatenate(Symbol... symbols) {
+    public Concatenate(BaseSymbol... symbols) {
         this.symbols = symbols;
     }
 
     @Override
     public void generate(StringBuilder sb, Random rnd) {
-        for (Symbol symbol : symbols) {
+        for (BaseSymbol symbol : symbols) {
             symbol.generate(sb, rnd);
         }
     }

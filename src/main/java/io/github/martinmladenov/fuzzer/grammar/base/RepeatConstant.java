@@ -5,12 +5,12 @@ import java.util.Random;
 /**
  * Generate a certain symbol a predefined number of times.
  */
-public class RepeatConstant extends Symbol {
+public class RepeatConstant extends BaseSymbol {
 
     private final int count;
-    private final Symbol symbol;
+    private final BaseSymbol symbol;
 
-    public RepeatConstant(Symbol symbol, int count) {
+    public RepeatConstant(BaseSymbol symbol, int count) {
         if (count <= 0) {
             throw new IllegalArgumentException("count must be > 0");
         }

@@ -5,11 +5,11 @@ import java.util.Random;
 /**
  * Randomly picks one of the symbols from the list with equal probability.
  */
-public class OneOf extends Symbol {
+public class OneOf extends BaseSymbol {
 
-    private final Symbol[] symbols;
+    private final BaseSymbol[] symbols;
 
-    public OneOf(Symbol... symbols) {
+    public OneOf(BaseSymbol... symbols) {
         this.symbols = symbols;
     }
 
