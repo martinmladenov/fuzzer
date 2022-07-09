@@ -9,7 +9,7 @@ import io.github.martinmladenov.fuzzer.grammar.base.BaseSymbol;
 public class OneOrMore extends RepeatRandom {
 
     public OneOrMore(BaseSymbol symbol) {
-        super(symbol, 1, RepeatRandom.DEFAULT_MAX);
+        super(symbol, 1);
     }
 
 }

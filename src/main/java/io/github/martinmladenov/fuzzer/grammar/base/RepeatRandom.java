@@ -8,7 +8,7 @@ import java.util.Random;
 public class RepeatRandom extends BaseSymbol {
 
     // TODO: This is an arbitrary value, perhaps it should be changed in the future
-    protected static final int DEFAULT_MAX = 50;
+    private static final int DEFAULT_MAX = 50;
 
     private final int min;
     private final int max;
@@ -31,6 +31,10 @@ public class RepeatRandom extends BaseSymbol {
         this.symbol = symbol;
         this.min = min;
         this.max = max;
+    }
+
+    public RepeatRandom(BaseSymbol symbol, int min) {
+        this(symbol, min, DEFAULT_MAX);
     }
 
     @Override
