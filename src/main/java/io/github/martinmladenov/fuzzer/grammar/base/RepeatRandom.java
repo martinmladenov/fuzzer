@@ -25,7 +25,7 @@ public class RepeatRandom extends BaseSymbol {
         }
 
         if (max <= min) {
-            throw new IllegalArgumentException("max must be >= min");
+            throw new IllegalArgumentException("max must be > min");
         }
 
         this.symbol = symbol;
