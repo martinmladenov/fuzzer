@@ -16,8 +16,8 @@ public class RepeatRandom extends Symbol {
 
     /**
      * @param symbol the symbol to generate
-     * @param min    the minimum number of times to generate the symbol (inclusive)
-     * @param max    the maximum number of times to generate the symbol (exclusive)
+     * @param min    the minimum number of times to generate the symbol (incl.)
+     * @param max    the maximum number of times to generate the symbol (incl.)
      */
     public RepeatRandom(Symbol symbol, int min, int max) {
         if (min < 0) {
@@ -35,7 +35,7 @@ public class RepeatRandom extends Symbol {
 
     @Override
     public void generate(StringBuilder sb, Random rnd) {
-        int count = rnd.nextInt(max - min) + min;
+        int count = rnd.nextInt(max - min + 1) + min;
         for (int i = 0; i < count; i++) {
             symbol.generate(sb, rnd);
         }
