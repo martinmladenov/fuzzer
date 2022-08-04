@@ -5,13 +5,13 @@ import java.util.Random;
 /**
  * Generate a random ascii character in a predefined range.
  */
-public class CharBetween extends BaseSymbol{
+public class CharBetween extends BaseSymbol {
 
     char min;
     char max;
 
-    public CharBetween(char min, char max){
-        if(min >= max){
+    public CharBetween(char min, char max) {
+        if (min >= max) {
             throw new IllegalArgumentException("min must be < max");
         }
 

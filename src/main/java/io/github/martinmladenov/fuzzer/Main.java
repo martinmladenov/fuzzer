@@ -1,8 +1,7 @@
 package io.github.martinmladenov.fuzzer;
 
-import io.github.martinmladenov.fuzzer.grammar.base.*;
+import io.github.martinmladenov.fuzzer.grammar.base.Concatenate;
 import io.github.martinmladenov.fuzzer.grammar.base.ext.*;
-import io.github.martinmladenov.fuzzer.grammar.rfc3986.URI;
 import io.github.martinmladenov.fuzzer.grammar.rfc3986.URIReference;
 
 import java.util.Random;

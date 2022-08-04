@@ -1,7 +1,6 @@
 package io.github.martinmladenov.fuzzer.grammar.base.ext;
 
 import io.github.martinmladenov.fuzzer.grammar.base.OneOf;
-import io.github.martinmladenov.fuzzer.grammar.base.Terminal;
 
 /**
  * Generates a random uppercase or lowercase letter with equal probability.

@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class Terminal extends BaseSymbol {
 
-    private String value;
+    private final String value;
 
     public Terminal(String value) {
         this.value = value;

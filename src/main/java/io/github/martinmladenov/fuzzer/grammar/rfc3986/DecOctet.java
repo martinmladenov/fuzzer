@@ -1,7 +1,8 @@
 package io.github.martinmladenov.fuzzer.grammar.rfc3986;
 
 import io.github.martinmladenov.fuzzer.grammar.base.*;
-import io.github.martinmladenov.fuzzer.grammar.base.ext.*;
+import io.github.martinmladenov.fuzzer.grammar.base.ext.Digit;
+import io.github.martinmladenov.fuzzer.grammar.base.ext.Symbol;
 
 public class DecOctet extends Symbol {
 

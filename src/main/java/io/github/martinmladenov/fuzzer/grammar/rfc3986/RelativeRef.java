@@ -1,7 +1,9 @@
 package io.github.martinmladenov.fuzzer.grammar.rfc3986;
 
-import io.github.martinmladenov.fuzzer.grammar.base.*;
-import io.github.martinmladenov.fuzzer.grammar.base.ext.*;
+import io.github.martinmladenov.fuzzer.grammar.base.Concatenate;
+import io.github.martinmladenov.fuzzer.grammar.base.Terminal;
+import io.github.martinmladenov.fuzzer.grammar.base.ext.Optional;
+import io.github.martinmladenov.fuzzer.grammar.base.ext.Symbol;
 
 public class RelativeRef extends Symbol {
 
