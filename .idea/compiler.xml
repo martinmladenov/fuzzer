@@ -9,5 +9,8 @@
         <module name="fuzzer" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="fuzzer" target="16" />
+    </bytecodeTargetLevel>
   </component>
 </project>
