@@ -96,4 +96,18 @@ public class ParserResult {
     public int hashCode() {
         return Objects.hash(scheme, authority, path, query, fragment, userinfo, host, port);
     }
+
+    @Override
+    public String toString() {
+        return "---\n" +
+               "  scheme:    " + scheme + '\n' +
+               "  userinfo:  " + userinfo + '\n' +
+               "  host:      " + host + '\n' +
+               "  port:      " + port + '\n' +
+               "  authority: " + authority + '\n' +
+               "  path:      " + path + '\n' +
+               "  query:     " + query + '\n' +
+               "  fragment:  " + fragment + '\n' +
+               "---";
+    }
 }
