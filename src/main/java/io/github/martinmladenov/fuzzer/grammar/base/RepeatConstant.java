@@ -1,6 +1,7 @@
 package io.github.martinmladenov.fuzzer.grammar.base;
 
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Generate a certain symbol a predefined number of times.
@@ -20,9 +21,9 @@ public class RepeatConstant extends BaseSymbol {
     }
 
     @Override
-    public void generate(StringBuilder sb, Random rnd) {
+    public void generate(StringBuilder sb, Random rnd, Set<String> used) {
         for (int i = 0; i < count; i++) {
-            symbol.generate(sb, rnd);
+            symbol.generate(sb, rnd, used);
         }
     }
 

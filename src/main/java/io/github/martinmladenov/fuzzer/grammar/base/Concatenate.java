@@ -1,6 +1,7 @@
 package io.github.martinmladenov.fuzzer.grammar.base;
 
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Generates all symbols from left to right and concatenates their results.
@@ -14,9 +15,9 @@ public class Concatenate extends BaseSymbol {
     }
 
     @Override
-    public void generate(StringBuilder sb, Random rnd) {
+    public void generate(StringBuilder sb, Random rnd, Set<String> used) {
         for (BaseSymbol symbol : symbols) {
-            symbol.generate(sb, rnd);
+            symbol.generate(sb, rnd, used);
         }
     }
 

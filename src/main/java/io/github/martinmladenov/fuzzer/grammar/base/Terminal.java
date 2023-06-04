@@ -1,6 +1,7 @@
 package io.github.martinmladenov.fuzzer.grammar.base;
 
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Appends a predefined string.
@@ -14,7 +15,7 @@ public class Terminal extends BaseSymbol {
     }
 
     @Override
-    public void generate(StringBuilder sb, Random rnd) {
+    public void generate(StringBuilder sb, Random rnd, Set<String> used) {
         sb.append(value);
     }
 

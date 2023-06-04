@@ -3,6 +3,7 @@ package io.github.martinmladenov.fuzzer.grammar.base.ext;
 import io.github.martinmladenov.fuzzer.grammar.base.BaseSymbol;
 
 import java.util.Random;
+import java.util.Set;
 
 /**
  * A dummy symbol that wraps another symbol.
@@ -17,8 +18,11 @@ public class Symbol extends BaseSymbol {
     }
 
     @Override
-    public void generate(StringBuilder sb, Random rnd) {
-        symbol.generate(sb, rnd);
+    public void generate(StringBuilder sb, Random rnd, Set<String> used) {
+        // log actual class
+        used.add(this.getClass().getSimpleName());
+
+        symbol.generate(sb, rnd, used);
     }
 
 }

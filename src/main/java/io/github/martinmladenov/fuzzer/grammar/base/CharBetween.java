@@ -1,6 +1,7 @@
 package io.github.martinmladenov.fuzzer.grammar.base;
 
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Generate a random ascii character in a predefined range.
@@ -20,7 +21,7 @@ public class CharBetween extends BaseSymbol {
     }
 
     @Override
-    public void generate(StringBuilder sb, Random rnd) {
+    public void generate(StringBuilder sb, Random rnd, Set<String> used) {
         char c = (char) (rnd.nextInt(max - min + 1) + min);
         sb.append(c);
     }
