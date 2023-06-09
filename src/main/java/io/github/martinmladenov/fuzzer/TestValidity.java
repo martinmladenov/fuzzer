@@ -14,20 +14,31 @@ import java.util.Set;
 
 public class TestValidity {
     public static void main(String[] args) {
+        final int n = 1000;
+
         ParserAcceptanceTester tester = new ParserAcceptanceTester();
         UriGenerator generator = new UriGenerator(123);
 
         Set<String> allFeatures = new HashSet<>();
 
-        int n = 1200;
+        ArrayList<Result> results = new ArrayList<>(n * 2);
 
-        ArrayList<Result> results = new ArrayList<>();
-
-        for (int i = 0; i < n; i++) {
+        for (int nLabel0 = 0, nLabel1 = 0; nLabel0 < n || nLabel1 < n; ) {
+//            System.out.println(nLabel0 + " " + nLabel1);
             Set<String> used = new HashSet<>();
             String uri = generator.generate(used);
             allFeatures.addAll(used);
             boolean accepted = tester.isAccepted(uri);
+
+            // make sure the labels are balanced
+            if (accepted) {
+                if (nLabel1 >= n) continue;
+                nLabel1++;
+            } else {
+                if (nLabel0 >= n) continue;
+                nLabel0++;
+            }
+
             Result result = new Result(used, accepted);
             results.add(result);
         }
