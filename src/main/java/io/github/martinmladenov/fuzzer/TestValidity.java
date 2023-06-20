@@ -4,9 +4,6 @@ import io.github.martinmladenov.fuzzer.grammar.rfc3986.URIReference;
 import io.github.martinmladenov.fuzzer.parsers.ParserAdapter;
 import io.github.martinmladenov.fuzzer.parsers.implementations.JavaURIParser;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -14,17 +11,18 @@ import java.util.Set;
 
 public class TestValidity {
     public static void main(String[] args) {
+        int seed = Integer.parseInt(args[0]);
+
         final int n = 1000;
 
         ParserAcceptanceTester tester = new ParserAcceptanceTester();
-        UriGenerator generator = new UriGenerator(123);
+        UriGenerator generator = new UriGenerator(seed);
 
         Set<String> allFeatures = new HashSet<>();
 
         ArrayList<Result> results = new ArrayList<>(n * 2);
 
         for (int nLabel0 = 0, nLabel1 = 0; nLabel0 < n || nLabel1 < n; ) {
-//            System.out.println(nLabel0 + " " + nLabel1);
             Set<String> used = new HashSet<>();
             String uri = generator.generate(used);
             allFeatures.addAll(used);
@@ -60,11 +58,7 @@ public class TestValidity {
         }
 
         String csvString = csv.toString();
-        try {
-            Files.writeString(Paths.get("results.csv"), csvString);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.println(csvString);
     }
 
     static class Result {
