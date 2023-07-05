@@ -19,10 +19,20 @@ def get_data():
 
     return data
 
+def get_confidence(tree, node_id):
+    weights = tree.value[node_id]
+    l, r = weights[0]
+    actual_confidence = max(l, r) / (l+r)
+    return actual_confidence
+
 def should_generate_more(tree, node_id):
     weights = tree.value[node_id]
     l, r = weights[0]
-    return abs(l-r) < 1 # threshold
+    actual_confidence = get_confidence(tree, node_id)
+
+    confidence_threshold = 0.7
+    min_threshold = 10
+    return abs(l-r) < min_threshold or actual_confidence < confidence_threshold
 
 def generate_more(old_data, feature, value):
     print(f"Generating more with {feature} = {value}")
@@ -49,7 +59,7 @@ def main():
         X = data.copy()
         y = X.pop('label')
 
-        clf = DecisionTreeClassifier(random_state=randint(0, 10000))
+        clf = DecisionTreeClassifier(random_state=randint(0, 10000), max_depth=5)
         clf.fit(X, y)
 
         # t = export_text(clf, feature_names=features, show_weights=True, decimals=0)
@@ -57,7 +67,9 @@ def main():
 
         tree = clf.tree_
 
-        generated = False
+        selected_node_id = None
+        selected_label = None
+        min_confidence = 2**8
 
         for node_id in range(0, tree.node_count):
             left_child_id = tree.children_left[node_id]
@@ -69,23 +81,29 @@ def main():
             
             if tree.children_left[left_child_id] == tree.children_right[left_child_id]:
                 # left child is leaf
-                if should_generate_more(tree, left_child_id):
-                    feature = features[tree.feature[node_id]]
-                    data = generate_more(data, feature, 0)
-                    generated = True
-                    break
+                confidence = get_confidence(tree, left_child_id)
+                if confidence < min_confidence:
+                    min_confidence = confidence
+                    if should_generate_more(tree, left_child_id):
+                            selected_node_id = left_child_id
+                            selected_label = 0
             
             if tree.children_left[right_child_id] == tree.children_right[right_child_id]:
                 # right child is leaf
-                if should_generate_more(tree, right_child_id):
-                    feature = features[tree.feature[node_id]]
-                    data = generate_more(data, feature, 1)
-                    generated = True
-                    break
-            
+                confidence = get_confidence(tree, right_child_id)
+                if confidence < min_confidence:
+                    min_confidence = confidence
+                    if should_generate_more(tree, right_child_id):
+                        selected_node_id = right_child_id
+                        selected_label = 1
 
-        if not generated:
+        print("Confidence: ", min_confidence)            
+
+        if not selected_node_id:
             break
+
+        feature = features[tree.feature[node_id]]
+        data = generate_more(data, feature, selected_label)
     
 
 if __name__ == "__main__":
