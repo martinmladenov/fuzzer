@@ -5,6 +5,8 @@ from sklearn.tree import DecisionTreeClassifier, export_text
 from random import randint, seed
 import subprocess
 from io import StringIO
+import matplotlib.pyplot as plt
+import numpy as np
 
 def get_data():
     csv_raw = subprocess.run(['java', '-cp', 'target/generator.jar',
@@ -52,6 +54,7 @@ def main():
     features = list(data.columns)[:-1]
 
     iteration = 0
+    conf_log = []
     while True:
         iteration += 1
         print(f"---\nIteration {iteration}")
@@ -97,13 +100,26 @@ def main():
                         selected_node_id = right_child_id
                         selected_label = 1
 
-        print("Confidence: ", min_confidence)            
+        print("Confidence: ", min_confidence)
+        conf_log.append(min_confidence)
 
         if not selected_node_id:
+            t = export_text(clf, feature_names=features, show_weights=True, decimals=0)
+            print(t)
             break
 
         feature = features[tree.feature[node_id]]
         data = generate_more(data, feature, selected_label)
+
+    fig, ax = plt.subplots()
+    ax.plot(np.arange(1, iteration+1), conf_log)
+
+    ax.set(xlabel='Iteration', ylabel='Minimum confidence',
+           title='Minimum condifence score per iteration')
+    ax.grid()
+
+    fig.savefig("confidence.pdf")
+
     
 
 if __name__ == "__main__":
