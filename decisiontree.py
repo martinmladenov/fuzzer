@@ -55,6 +55,7 @@ def main():
 
     iteration = 0
     conf_log = []
+    node_log = []
     while True:
         iteration += 1
         print(f"---\nIteration {iteration}")
@@ -100,8 +101,10 @@ def main():
                         selected_node_id = right_child_id
                         selected_label = 1
 
-        print("Confidence: ", min_confidence)
+        print("Confidence:", min_confidence)
         conf_log.append(min_confidence)
+        print("Number of nodes:", tree.node_count)
+        node_log.append(tree.node_count)
 
         if not selected_node_id:
             t = export_text(clf, feature_names=features, show_weights=True, decimals=0)
@@ -112,10 +115,15 @@ def main():
         data = generate_more(data, feature, selected_label)
 
     fig, ax = plt.subplots()
-    ax.plot(np.arange(1, iteration+1), conf_log)
+    ax.set(xlabel='Iteration',title='Minimum condifence score and number of nodes per iteration')
 
-    ax.set(xlabel='Iteration', ylabel='Minimum confidence',
-           title='Minimum condifence score per iteration')
+    ax.plot(np.arange(1, iteration+1), conf_log, color="blue")
+    ax.set_ylabel(ylabel='Minimum confidence', color="blue")
+
+    ax2 = ax.twinx()
+    ax2.plot(np.arange(1, iteration+1), node_log, color="grey")
+    ax2.set_ylabel(ylabel='Number of nodes', color="grey")
+
     ax.grid()
 
     fig.savefig("confidence.pdf")
